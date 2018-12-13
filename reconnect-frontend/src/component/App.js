@@ -1,30 +1,18 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
+import BodyContainer from './BodyContainer';
 
 class App extends Component {
-  constructor() {
-      super();
-
-      this.state = {
-        data: null,
-      };
-    }
-
-    componentDidMount() {
-      fetch('http://localhost:3000/api/v1/users')
-        .then(response => response.json())
-        .then(data => this.setState({ data }));
-    }
-
   render() {
     return (
       <div className="App">
         <header className="App-header">
+        <ul>
+        <li className="nav-item"><h2>re:CONNECT</h2></li>
 
-
-
-
+      </ul>
         </header>
+        <BodyContainer />
       </div>
     );
   }
