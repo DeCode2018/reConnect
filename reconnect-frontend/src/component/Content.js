@@ -11,9 +11,9 @@ class Content extends Component{
       if (this.props.relationshipView === `Family`) {
         return <FamilyView userInfo={this.props.userInfo}/>;
       } else if (this.props.relationshipView === `Friends`) {
-        return <FriendsView />;
+        return <FriendsView userInfo={this.props.userInfo}/>;
       } else if (this.props.relationshipView === `Associates`) {
-        return <AssociatesView />;
+        return <AssociatesView userInfo={this.props.userInfo}/>;
       } else {
         return <Instructions />;
       }
