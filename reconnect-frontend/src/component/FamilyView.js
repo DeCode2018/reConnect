@@ -6,14 +6,15 @@ class FamilyView extends Component{
   render(){
     let allUserInfo = this.props.userInfo
 
-      allUserInfo.forEach(user=>{
-        user.contacts.filter(contact=>{
-          console.log(contact)
+      let filteredFamily = allUserInfo[0].contacts.filter(contact=>{
+          return contact.category === 'family'
         })
-      })
+        console.log(filteredFamily)
     return(
       <Fragment>
-        <FamilyCard />
+      <div className="ui link cards">
+        {filteredFamily.map(familyMember => <FamilyCard familyMember={familyMember} key={familyMember.id}/>)}
+        </div>
       </Fragment>
     )
   }

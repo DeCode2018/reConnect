@@ -1,10 +1,19 @@
-import React, { Component } from 'react';
-
+import React, { Component, Fragment } from 'react';
+import FriendCard from './FriendCard'
 class FriendsView extends Component{
   render(){
+    let allUserInfo = this.props.userInfo
+
+      let filteredFriend = allUserInfo[0].contacts.filter(contact=>{
+          return contact.category === 'friend'
+        })
+        console.log(filteredFriend)
     return(
-      
-      <h1>FriendsView go here</h1>
+      <Fragment>
+      <div className="ui link cards">
+        {filteredFriend.map(friendMember => <FriendCard friendMember={friendMember} key={friendMember.id}/>)}
+        </div>
+      </Fragment>
     )
   }
 }
