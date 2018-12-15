@@ -8,11 +8,12 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <ul>
-        <li className="nav-item"><h2>re:CONNECT</h2></li>
+        <li className="nav-item"><h1>re:CONNECT</h1></li>
 
       </ul>
         </header>
         <BodyContainer />
+        
       </div>
     );
   }
