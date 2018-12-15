@@ -13,11 +13,18 @@ Contact.destroy_all
 dustin = User.create(name: 'Dustin', password: 'password', avatar: 'https://cdn0.iconfinder.com/data/icons/flat-profession-icons/48/2-512.png')
 
 #-----------------------------Contacts------------------------------------------
-dustin.contacts.create(name:'Nicole', contact_avatar:'https://img.icons8.com/color/1600/person-female.png', category:'friend', last_event_date:'20180615' )
-dustin.contacts.create(name:'Jennifer', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXXmBvHF1K3QQ0cbaznD0yfSqNizuv3rOrcQKW43gWgQ8ujiyg', category:'family', last_event_date:'20180425' )
-dustin.contacts.create(name:'Carlos', contact_avatar:'https://img.icons8.com/color/1600/person-male.png', category:'family', last_event_date:'20180425' )
-dustin.contacts.create(name:'John', contact_avatar:'https://img.icons8.com/color/1600/person-male.png', category:'family', last_event_date:'20180425' )
-dustin.contacts.create(name:'Kimberly', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXXmBvHF1K3QQ0cbaznD0yfSqNizuv3rOrcQKW43gWgQ8ujiyg', category:'family', last_event_date:'20180425' )
+dustin.contacts.create(name:'William', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy08cK8wogTcvUJYvty4hAPwvKxTIJEqneUkNc3r4CBLkroZyn', category:'family', last_event_date:'2018-06-15', cell_num: '555-555-5555', email_address: 'william@fakeemail.com', relationship: 'Cousin', home_address: '123 Main St', home_city: 'Washington', home_state: 'D.C.', home_zip: '22022', company_name: 'self-employed', company_address: '1440 G St. NW, Washington, D.C. 200005', bday: '19650327', notes: 'Life of the party...', job_title: 'CEO' )
+
+dustin.contacts.create(name:'David', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy08cK8wogTcvUJYvty4hAPwvKxTIJEqneUkNc3r4CBLkroZyn', category:'family', last_event_date:'2018-06-15', cell_num: '555-555-5555', email_address: 'david@fakeemail.com', relationship: 'brother', home_address: '456 Main St', home_city: 'Arlington', home_state: 'VA', home_zip: '22122', company_name: 'CyberCoders', company_address: '1440 F St. NW, Washington, D.C. 200005', bday: '19850417', notes: 'Loves all things sci-fi', job_title: 'Sr. Software Developer' )
+
+dustin.contacts.create(name:'Emily', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXXmBvHF1K3QQ0cbaznD0yfSqNizuv3rOrcQKW43gWgQ8ujiyg', category:'family', last_event_date:'2018-06-15', cell_num: '555-555-5555', email_address: 'Emily@fakeemail.com', relationship: 'Aunt', home_address: '123 Another St', home_city: 'Atlanta', home_state: 'GA', home_zip: '33033', company_name: 'Piedmont Hospital', company_address: '1440 X St. NW, Washington, D.C. 200005', bday: '19730327', notes: 'Works a lot...',job_title: 'Physician' )
+
+dustin.contacts.create(name:'Kimberly', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXXmBvHF1K3QQ0cbaznD0yfSqNizuv3rOrcQKW43gWgQ8ujiyg', category:'family', last_event_date:'2018-06-15', cell_num: '555-555-5555', email_address: 'william@fakeemail.com', relationship: 'Cousin', home_address: '123 And Another St', home_city: 'Miami', home_state: 'FL', home_zip: '33333', company_name: 'University of Miami', company_address: '1440 G St. NW, Washington, D.C. 200005', bday: '19650327', notes: 'Life of the party...',job_title: 'professor' )
+
+dustin.contacts.create(name:'Kevin', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy08cK8wogTcvUJYvty4hAPwvKxTIJEqneUkNc3r4CBLkroZyn', category:'friend', last_event_date:'2018-06-15', cell_num: '555-555-5555', email_address: 'Kevin@fakeemail.com', relationship: 'Friend from College', home_address: '123 And Another St', home_city: 'Hollywood', home_state: 'CA', home_zip: '33333', company_name: 'Kevin Productions', company_address: '1440 G St. NW, Washington, D.C. 200005', bday: '19850218', notes: 'Life of the party...',job_title: 'CEO' )
+
+dustin.contacts.create(name:'Steven', contact_avatar:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQy08cK8wogTcvUJYvty4hAPwvKxTIJEqneUkNc3r4CBLkroZyn', category:'associate', last_event_date:'2018-06-15', cell_num: '555-555-5555', email_address: 'Steven@fakeemail.com', relationship: 'Met at Coding Networking Event', home_address: '123 And Another St', home_city: 'Washington', home_state: 'D.C.', home_zip: '22222', company_name: 'XYZ,inc', company_address: '1440 G St. NW, Washington, D.C. 200005', bday: '19650327', notes: 'hiring manager at  XYZ company, told you to send him your resume',job_title: 'Product Manager' )
+
 
 
 #-----------------------------Events--------------------------------------------

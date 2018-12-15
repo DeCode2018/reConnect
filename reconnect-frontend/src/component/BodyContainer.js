@@ -9,7 +9,7 @@ class BodyContainer extends Component {
 
       this.state = {
         usersData: null,
-        currentRelationship:''
+        currentContainerView:''
       };
     }
 
@@ -21,17 +21,33 @@ class BodyContainer extends Component {
 
     relationshipView = (event) =>{
       this.setState({
-        currentRelationship: event.value
+        currentContainerView: event.value
+      })
+    }
+
+    contactView = (familyMember) =>{
+      this.setState({
+        currentContainerView: familyMember
+      })
+    }
+
+    handleAddButton = () =>{
+      this.setState({
+        currentContainerView: "add contact"
       })
     }
 
   render(){
-    const options = ['Family', 'Friends', 'Associates']
+    const options = ['Select a Relationship Type','Family', 'Friends', 'Associates']
     return(
       <Fragment>
-      <Dropdown options={options} onChange={this.relationshipView}  placeholder="Select a Relationship Type" value={this.state.currentRelationship}/>
-      <Content relationshipView={this.state.currentRelationship} userInfo={this.state.usersData}/>
+      <Dropdown options={options} onChange={this.relationshipView}  placeholder="Select a Relationship Type" value={this.state.currentContainerView}/>
+      <Content relationshipView={this.state.currentContainerView} userInfo={this.state.usersData} contactView={this.contactView}/>
+      <button className="ui black button" onClick={this.handleAddButton}>Add A Connection</button>
       </Fragment>
+
+
+
     )
   }
 }

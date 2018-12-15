@@ -12,20 +12,14 @@ class AssociateCard extends Component{
     <div className="content">
       <div className="header">{this.props.associateMember.name}</div>
       <div className="meta">
-        <h6>{this.props.associateMember.category}</h6>
-      </div>
-      <div className="description">
-        Matthew is an interior designer living in New York.
+        <h2>{this.props.associateMember.relationship}</h2>
       </div>
     </div>
     <div className="extra content">
       <span className="right floated">
-      Date of Last Event:  {this.props.associateMember.last_event_date}
+      Date of Last Event:  {new Date(this.props.associateMember.last_event_date).toDateString()}
       </span>
-      <span>
-        <i className="user icon"></i>
-        75 Associates
-      </span>
+      
     </div>
 
 

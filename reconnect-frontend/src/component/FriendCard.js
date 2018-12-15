@@ -12,20 +12,15 @@ class FriendCard extends Component{
     <div className="content">
       <div className="header">{this.props.friendMember.name}</div>
       <div className="meta">
-        <h6>{this.props.friendMember.category}</h6>
+        <h2>{this.props.friendMember.relationship}</h2>
       </div>
-      <div className="description">
-        Matthew is an interior designer living in New York.
-      </div>
+      
     </div>
     <div className="extra content">
       <span className="right floated">
-      Date of Last Event:  {this.props.friendMember.last_event_date}
+      Date of Last Event: {new Date(this.props.friendMember.last_event_date).toDateString()}
       </span>
-      <span>
-        <i className="user icon"></i>
-        75 Friends
-      </span>
+
     </div>
 
 
