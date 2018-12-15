@@ -1,15 +1,25 @@
-import React, { Component, Fragment } from 'react';
-
+import React, { Component } from 'react';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
 
 class NewContactForm extends Component{
 
-
+  constructor(props) {
+     super(props);
+     this.handleDayChange = this.handleDayChange.bind(this);
+     this.state = {
+       selectedDay: undefined,
+     };
+   }
+   handleDayChange(day) {
+     this.setState({ selectedDay: day });
+   }
 
   render(){
-
+    const { selectedDay } = this.state;
   return(
-    <div class="ui main container grid six wide column centered">
-    <form class="ui form wide column centered">
+    <div class="ui main container grid four wide column centered">
+    <form class="ui form six wide column centered">
       <h4 class="ui dividing header">Contact Information</h4>
       <div class="field">
       <label>Name</label>
@@ -22,19 +32,66 @@ class NewContactForm extends Component{
       </div>
       </div>
       </div>
+
+
+
+      <div class="field">
+      <label>Category</label>
+      <select class="ui fluid dropdown">
+      <option value="">Category</option>
+      <option value="Family">Family</option>
+      <option value="Friend">Friend</option>
+      <option value="Associate">Associate</option>
+      </select>
+      </div>
+
+      <div class="field">
+      <label>Relationship</label>
+      <div class="field">
+      <div class="field">
+        <input type="text" name="Relationship" placeholder="Relationship (e.g. Cousin, Code4Change Member, etc.)"/>
+      </div>
+      </div>
+      </div>
+
+
+      <div>
+      <div class="field">
+      <label>Birth Date</label>
+        {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
+        {!selectedDay}
+        <DayPickerInput onDayChange={this.handleDayChange} />
+      </div>
+      </div>
+
+
+      <div>
+      <div class="field">
+      <div class="field">
+      <label>Image</label>
+        <input type="text" name="contact_avatar" placeholder="Insert Contact Image "/>
+      </div>
+      </div>
+      </div>
+
+
+
       <div class="field">
       <label>Home Address</label>
-      <div class="fields">
-      <div class="twelve wide field">
+      <div class="field">
+      <div class="field">
         <input type="text" name="shipping[address]" placeholder="Street Address"/>
       </div>
-      <div class="four wide field">
-        <input type="text" name="shipping[address-2]" placeholder="Apt #"/>
       </div>
       </div>
+
+      <div class="two field">
+      <div class="two field">
+      <label>City</label>
+        <input type="text" name="home[city]" placeholder="City"/>
       </div>
       <div class="field">
-      <div class="field">
+
       <label>State</label>
       <select class="ui fluid dropdown">
         <option value="">State</option>
@@ -90,21 +147,34 @@ class NewContactForm extends Component{
       <option value="WI">Wisconsin</option>
       <option value="WY">Wyoming</option>
       </select>
-      <div class="two wide field">
+      <div class= "ui form six wide column centered">
+      <div class="four wide field">
+      <label>Zip Code</label>
         <input type="text" name="shipping[address-2]" placeholder="zip code"/>
       </div>
       </div>
+      </div>
 
+      <label>Company Name</label>
+      <div class="field">
+      <div class="field">
+        <input type="text" name="company_name" placeholder="(e.g. Big Company Inc.)"/>
+      </div>
+      </div>
 
+      <label>Job Title</label>
+      <div class="field">
+      <div class="field">
+        <input type="text" name="job_title" placeholder="(e.g. Chief Executive Officer)"/>
+      </div>
+      </div>
 
 <label>Work Address</label>
-<div class="fields">
-<div class="twelve wide field">
+<div class="field">
+<div class="field">
   <input type="text" name="shipping[address]" placeholder="Street Address"/>
 </div>
-<div class="four wide field">
-  <input type="text" name="shipping[address-2]" placeholder="Apt #"/>
-</div>
+
 </div>
 </div>
 <div class="field">
@@ -164,84 +234,47 @@ class NewContactForm extends Component{
 <option value="WI">Wisconsin</option>
 <option value="WY">Wyoming</option>
 </select>
-<div class="field">
+<div class="four wide field">
+  <label>Zip Code </label>
   <input type="text" name="shipping[address-2]" placeholder="zip code"/>
 </div>
 </div>
 
 
+<div class="field">
+  <label>Cell # </label>
+  <input type="text" name="cell_num" placeholder="(e.g. 555-555-5555)"/>
+</div>
+
+<div class="field">
+  <label>Email </label>
+  <input type="text" name="email_address" placeholder="(e.g. first.last@email.com)"/>
+</div>
 
 
-      <div class="six wide field">
-      <label>Expiration</label>
-      <div class="two fields">
-        <div class="field">
-          <select class="ui fluid search dropdown" name="card[expire-month]">
-            <option value="">Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-        </div>
-        <div class="field">
-          <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year"/>
-        </div>
+
+
       </div>
-      </div>
-      </div>
-      <h4 class="ui dividing header">Receipt</h4>
+      <h4 class="ui dividing header">Last Event Info</h4>
+
+
+      <div>
       <div class="field">
-      <label>Send Receipt To:</label>
-      <div class="ui fluid multiple search selection dropdown">
-      <input type="hidden" name="receipt"/>
-      <i class="dropdown icon"></i>
-      <div class="default text">Saved Contacts</div>
-      <div class="menu">
-        <div class="item" data-value="jenny" data-text="Jenny">
-          <img class="ui mini avatar image" src="/images/avatar/small/jenny.jpg"/>
-          Jenny Hess
-        </div>
-        <div class="item" data-value="elliot" data-text="Elliot">
-          <img class="ui mini avatar image" src="/images/avatar/small/elliot.jpg"/>
-          Elliot Fu
-        </div>
-        <div class="item" data-value="stevie" data-text="Stevie">
-          <img class="ui mini avatar image" src="/images/avatar/small/stevie.jpg"/>
-          Stevie Feliciano
-        </div>
-        <div class="item" data-value="christian" data-text="Christian">
-          <img class="ui mini avatar image" src="/images/avatar/small/christian.jpg"/>
-          Christian
-        </div>
-        <div class="item" data-value="matt" data-text="Matt">
-          <img class="ui mini avatar image" src="/images/avatar/small/matt.jpg"/>
-          Matt
-        </div>
-        <div class="item" data-value="justen" data-text="Justen">
-          <img class="ui mini avatar image" src="/images/avatar/small/justen.jpg"/>
-          Justen Kitsune
-        </div>
+      <label>Date of Last Event:</label>
+        {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
+        {!selectedDay}
+        <DayPickerInput onDayChange={this.handleDayChange} />
       </div>
       </div>
-      </div>
-      <div class="ui segment">
+
       <div class="field">
-      <div class="ui toggle checkbox">
-        <input type="checkbox" name="gift" tabindex="0" class="hidden"/>
-        <label>Do not include a receipt in the package</label>
+        <label>Notes: </label>
+        <textarea type="text field" name="notes"></textarea>
       </div>
-      </div>
-      </div>
-      <div class="ui button" tabindex="0">Submit Order</div>
+
+
+      <div class="ui button fluid" tabindex="0">Submit</div>
+
       </form>
       </div>
     )

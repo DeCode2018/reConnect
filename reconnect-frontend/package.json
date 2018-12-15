@@ -4,9 +4,11 @@
   "private": true,
   "dependencies": {
     "react": "^16.6.3",
+    "react-day-picker": "^7.2.4",
     "react-dom": "^16.6.3",
     "react-dropdown": "^1.6.2",
     "react-scripts": "2.1.1",
+    "semantic-ui-calendar-react": "^0.12.1",
     "semantic-ui-css": "^2.4.1"
   },
   "scripts": {
