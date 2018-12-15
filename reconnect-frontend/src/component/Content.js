@@ -27,18 +27,24 @@ class Content extends Component{
     switch(this.props.relationshipView) {
       case 'Family':
         return <FamilyView userInfo={this.props.userInfo} handleClick={this.handleClick}/>;
+        // eslint-disable-next-line
         break;
       case 'Friends':
         return <FriendsView userInfo={this.props.userInfo}/>;
+        // eslint-disable-next-line
         break;
+
       case 'Associates':
         return <AssociatesView userInfo={this.props.userInfo}/>;
+        // eslint-disable-next-line
         break;
       case 'add contact':
         return <NewContactForm />;
+        // eslint-disable-next-line
         break;
       case this.state.currentCard:
         return <ContactView currentCard={this.state.currentCard} />
+        // eslint-disable-next-line
         break;
       default:
         return <Instructions />;
