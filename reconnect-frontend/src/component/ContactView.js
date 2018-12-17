@@ -16,7 +16,7 @@ class ContactView extends Component{
     <img src={this.props.currentCard.contact_avatar} alt="contact avatar"/>
     </div>
     <div className="content">
-      <div className="header">{this.props.currentCard.name}</div>
+      <div className="header">{this.props.currentCard.first_name} {this.props.currentCard.last_name}</div>
       <div className="meta">
         <div className="relationship">Relationship: {this.props.currentCard.relationship}</div>
         <div className="bday">Birthday: {this.props.currentCard.bday}</div>
@@ -31,16 +31,16 @@ class ContactView extends Component{
         <h2>Last Event: {this.props.currentCard.last_event_date}</h2>
         <p>Notes: {this.props.currentCard.notes}</p>
       </div>
-      <button class="ui labeled icon inverted green button">
-        <i class="add icon"></i>
+      <button className="ui labeled icon inverted green button">
+        <i className="add icon"></i>
         Add Event
       </button>
-      <button class="ui labeled icon inverted blue button">
-        <i class="edit icon"></i>
+      <button className="ui labeled icon inverted blue button">
+        <i className="edit icon"></i>
         Edit
       </button>
-      <button class="ui right labeled icon inverted red button">
-        <i class="delete icon"></i>
+      <button className="ui right labeled icon inverted red button">
+        <i className="delete icon"></i>
         Delete Contact
       </button>
     </div>

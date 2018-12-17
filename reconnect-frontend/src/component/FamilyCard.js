@@ -10,7 +10,7 @@ class FamilyCard extends Component{
       <img src={this.props.familyMember.contact_avatar} alt='user avatar'/>
     </div>
     <div className="content">
-      <div className="header">{this.props.familyMember.name}</div>
+      <div className="header">{this.props.familyMember.first_name} {this.props.familyMember.last_name}</div>
       <div className="meta">
         <h2>{this.props.familyMember.relationship}</h2>
       </div>

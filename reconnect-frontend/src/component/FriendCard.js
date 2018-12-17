@@ -4,17 +4,16 @@ class FriendCard extends Component{
   render(){
     return(
 
-
-  <div className="card">
+  <div className="card" onClick={()=>this.props.handleClick(this.props.friendMember)}>
     <div className="image">
       <img src={this.props.friendMember.contact_avatar} alt='user avatar'/>
     </div>
     <div className="content">
-      <div className="header">{this.props.friendMember.name}</div>
+      <div className="header">{this.props.friendMember.first_name} {this.props.friendMember.last_name}</div>
       <div className="meta">
         <h2>{this.props.friendMember.relationship}</h2>
       </div>
-      
+
     </div>
     <div className="extra content">
       <span className="right floated">

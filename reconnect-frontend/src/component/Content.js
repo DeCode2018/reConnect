@@ -16,9 +16,9 @@ class Content extends Component{
       }
     }
 
-    handleClick = (familyMember)=>{
-      this.setState({currentCard:familyMember})
-      this.props.contactView(familyMember)
+    handleClick = (contact)=>{
+      this.setState({currentCard:contact})
+      this.props.contactView(contact)
     }
 
   renderContent = () => {
@@ -30,16 +30,18 @@ class Content extends Component{
         // eslint-disable-next-line
         break;
       case 'Friends':
-        return <FriendsView userInfo={this.props.userInfo}/>;
+        return <FriendsView userInfo={this.props.userInfo}
+        handleClick={this.handleClick}/>;
         // eslint-disable-next-line
         break;
 
       case 'Associates':
-        return <AssociatesView userInfo={this.props.userInfo}/>;
+        return <AssociatesView userInfo={this.props.userInfo}
+        handleClick={this.handleClick}/>;
         // eslint-disable-next-line
         break;
       case 'add contact':
-        return <NewContactForm />;
+        return <NewContactForm userInfo={this.props.userInfo}/>;
         // eslint-disable-next-line
         break;
       case this.state.currentCard:
