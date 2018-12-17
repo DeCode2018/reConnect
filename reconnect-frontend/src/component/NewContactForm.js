@@ -6,68 +6,117 @@ class NewContactForm extends Component{
 
   constructor(props) {
      super(props);
+     this.handleBirthDateChange = this.handleBirthDateChange.bind(this);
      this.handleDayChange = this.handleDayChange.bind(this);
+     this.handleSubmit = this.handleSubmit.bind(this)
      this.state = {
-       selectedDay: undefined,
+       selectedBirthDate: undefined,
+       selectedEventDate: undefined,
+       user_id: this.props.userInfo.id
      };
    }
+   handleBirthDateChange(day) {
+     this.setState({ selectedBirthDate: day });
+
+   }
+
    handleDayChange(day) {
-     this.setState({ selectedDay: day });
+     this.setState({ selectedEventDate: day });
+   }
+
+   handleSubmit(event){
+      event.preventDefault();
+      alert("submitted")
+      const data = new FormData(event.target)
+      console.log(data)
+      console.log(data.get('first_name'))
+      fetch('http://localhost:3000/api/v1/contacts', {
+      method: 'POST',
+      headers: {
+            'Content-Type': 'application/json'
+        },
+      body: JSON.stringify({
+        user_id: this.state.user_id,
+        first_name: data.get('first_name'),
+        last_name: data.get('last_name'),
+        bday: this.state.selectedBirthDate,
+        contact_avatar: data.get('contact_avatar'),
+        category: data.get('category'),
+        last_event_date: this.state.selectedEventDate,
+        relationship: data.get('relationship'),
+        home_address: data.get('home_address'),
+        home_city: data.get('home_city'),
+        home_state: data.get('home_state'),
+        home_zip: data.get('home_zip'),
+        company_name: data.get('company_name'),
+        job_title: data.get('job_title'),
+        company_address: data.get('company_address'),
+        company_city: data.get('company_city'),
+        company_state: data.get('company_state'),
+        company_zip: data.get('company_zip'),
+        cell_num: data.get('cell_num'),
+        email_address: data.get('email_address'),
+        notes: data.get('notes')
+
+      })
+
+      })
    }
 
   render(){
-    const { selectedDay } = this.state;
+    const { selectedBirthDate } = this.state;
+    const { selectedEventDate } = this.state;
   return(
-    <div class="ui main container grid four wide column centered">
-    <form class="ui form six wide column centered">
-      <h4 class="ui dividing header">Contact Information</h4>
-      <div class="field">
+    <div className="ui main container grid four wide column centered">
+    <form onSubmit={this.handleSubmit} className="ui form six wide column centered" >
+      <h4 className="ui dividing header">Contact Information</h4>
+      <div className="field">
       <label>Name</label>
-      <div class="two fields">
-      <div class="field">
-        <input type="text" name="shipping[first-name]" placeholder="First Name"/>
+      <div className="two fields">
+      <div className="field">
+        <input type="text" id="first_name" name="first_name" placeholder="First Name"/>
       </div>
-      <div class="field">
-        <input type="text" name="shipping[last-name]" placeholder="Last Name"/>
+      <div className="field">
+        <input type="text" id="last_name" name="last_name" placeholder="Last Name"/>
       </div>
       </div>
       </div>
 
 
 
-      <div class="field">
+      <div className="field">
       <label>Category</label>
-      <select class="ui fluid dropdown">
+      <select className="ui fluid dropdown" id="category" name="category">
       <option value="">Category</option>
-      <option value="Family">Family</option>
-      <option value="Friend">Friend</option>
-      <option value="Associate">Associate</option>
+      <option value="family">Family</option>
+      <option value="friend">Friend</option>
+      <option value="associate">Associate</option>
       </select>
       </div>
 
-      <div class="field">
+      <div className="field">
       <label>Relationship</label>
-      <div class="field">
-      <div class="field">
-        <input type="text" name="Relationship" placeholder="Relationship (e.g. Cousin, Code4Change Member, etc.)"/>
+      <div className="field">
+      <div className="field">
+        <input type="text" id="relationship" name="relationship" placeholder="Relationship (e.g. Cousin, Code4Change Member, etc.)"/>
       </div>
       </div>
       </div>
 
 
       <div>
-      <div class="field">
+      <div className="field" >
       <label>Birth Date</label>
-        {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-        {!selectedDay}
-        <DayPickerInput onDayChange={this.handleDayChange} />
+        {selectedBirthDate && <p>Day: {selectedBirthDate.toLocaleDateString()}</p>}
+        {!selectedBirthDate}
+        <DayPickerInput className="bday" onDayChange={this.handleBirthDateChange} />
       </div>
       </div>
 
 
       <div>
-      <div class="field">
-      <div class="field">
+      <div className="field">
+      <div className="field">
       <label>Image</label>
         <input type="text" name="contact_avatar" placeholder="Insert Contact Image "/>
       </div>
@@ -76,24 +125,24 @@ class NewContactForm extends Component{
 
 
 
-      <div class="field">
+      <div className="field">
       <label>Home Address</label>
-      <div class="field">
-      <div class="field">
-        <input type="text" name="shipping[address]" placeholder="Street Address"/>
+      <div className="field">
+      <div className="field">
+        <input type="text" name="home_address" placeholder="Street Address"/>
       </div>
       </div>
       </div>
 
-      <div class="two field">
-      <div class="two field">
+      <div className="two field">
+      <div className="two field">
       <label>City</label>
-        <input type="text" name="home[city]" placeholder="City"/>
+        <input type="text" name="home_city" placeholder="City"/>
       </div>
-      <div class="field">
+      <div className="field">
 
       <label>State</label>
-      <select class="ui fluid dropdown">
+      <select className="ui fluid dropdown" name="home_state">
         <option value="">State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
@@ -147,40 +196,47 @@ class NewContactForm extends Component{
       <option value="WI">Wisconsin</option>
       <option value="WY">Wyoming</option>
       </select>
-      <div class= "ui form six wide column centered">
-      <div class="four wide field">
+      <div className= "field">
+      <div className="four wide field">
       <label>Zip Code</label>
-        <input type="text" name="shipping[address-2]" placeholder="zip code"/>
+        <input type="text" name="home_zip" placeholder="zip code"/>
       </div>
       </div>
       </div>
 
       <label>Company Name</label>
-      <div class="field">
-      <div class="field">
+      <div className="field">
+      <div className="field">
         <input type="text" name="company_name" placeholder="(e.g. Big Company Inc.)"/>
       </div>
       </div>
 
       <label>Job Title</label>
-      <div class="field">
-      <div class="field">
+      <div className="field">
+      <div className="field">
         <input type="text" name="job_title" placeholder="(e.g. Chief Executive Officer)"/>
       </div>
       </div>
 
 <label>Work Address</label>
-<div class="field">
-<div class="field">
-  <input type="text" name="shipping[address]" placeholder="Street Address"/>
+<div className="field">
+<div className="field">
+  <input type="text" name="company_address" placeholder="Street Address"/>
+</div>
+
+<div className="field">
+<div className="field">
+<label>Work City</label>
+  <input type="text" name="company_city" placeholder="City"/>
+</div>
 </div>
 
 </div>
 </div>
-<div class="field">
-<div class="field">
+<div className="field">
+<div className="field">
 <label>State</label>
-<select class="ui fluid dropdown">
+<select className="ui fluid dropdown" name="company_state">
   <option value="">State</option>
 <option value="AL">Alabama</option>
 <option value="AK">Alaska</option>
@@ -234,19 +290,19 @@ class NewContactForm extends Component{
 <option value="WI">Wisconsin</option>
 <option value="WY">Wyoming</option>
 </select>
-<div class="four wide field">
+<div className="four wide field">
   <label>Zip Code </label>
-  <input type="text" name="shipping[address-2]" placeholder="zip code"/>
+  <input type="text" name="company_zip" placeholder="zip code"/>
 </div>
 </div>
 
 
-<div class="field">
+<div className="field">
   <label>Cell # </label>
   <input type="text" name="cell_num" placeholder="(e.g. 555-555-5555)"/>
 </div>
 
-<div class="field">
+<div className="field">
   <label>Email </label>
   <input type="text" name="email_address" placeholder="(e.g. first.last@email.com)"/>
 </div>
@@ -255,25 +311,25 @@ class NewContactForm extends Component{
 
 
       </div>
-      <h4 class="ui dividing header">Last Event Info</h4>
+      <h4 className="ui dividing header">Last Event Info</h4>
 
 
       <div>
-      <div class="field">
+      <div className="field">
       <label>Date of Last Event:</label>
-        {selectedDay && <p>Day: {selectedDay.toLocaleDateString()}</p>}
-        {!selectedDay}
-        <DayPickerInput onDayChange={this.handleDayChange} />
+        {selectedEventDate && <p>Day: {selectedEventDate.toLocaleDateString()}</p>}
+        {!selectedEventDate}
+        <DayPickerInput className="last_event_date" onDayChange={this.handleDayChange} />
       </div>
       </div>
 
-      <div class="field">
+      <div className="field">
         <label>Notes: </label>
         <textarea type="text field" name="notes"></textarea>
       </div>
 
 
-      <div class="ui button fluid" tabindex="0">Submit</div>
+      <input className="ui button fluid" tabIndex="0" type="submit" value="Submit"/>
 
       </form>
       </div>

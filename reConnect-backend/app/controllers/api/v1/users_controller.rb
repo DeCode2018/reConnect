@@ -8,8 +8,8 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /todos
     def create
-      @user = User.create!(user_params)
-      render json:(@user)
+      user = User.create(user_params)
+      render json: user, status: 201
     end
 
     # GET /users/:id

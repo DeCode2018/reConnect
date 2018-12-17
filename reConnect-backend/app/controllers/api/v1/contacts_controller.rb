@@ -7,7 +7,8 @@ class Api::V1::ContactsController < ApplicationController
     end
 
     def create
-      contact = Contact.create(contact_params)
+      contact = Contact.create!(contact_params)
+
       render json: contact, status: 201
     end
 
@@ -28,7 +29,8 @@ class Api::V1::ContactsController < ApplicationController
 
     private
     def contact_params
-      params.permit(:name, :contact_avatar, :category, :last_event_date, :user_id)
+
+      params.require(:contact).permit(:name, :contact_avatar, :category, :last_event_date, :user_id, :first_name, :last_name, :relationship, :home_address, :home_city, :home_state, :home_zip, :company_name, :job_title, :company_address, :company_city, :company_state, :company_zip, :cell_num, :email_address, :notes, :bday)
     end
 
     def set_contact

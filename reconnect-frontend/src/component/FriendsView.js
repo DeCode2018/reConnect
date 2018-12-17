@@ -1,17 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import FriendCard from './FriendCard'
 class FriendsView extends Component{
+
   render(){
     let allUserInfo = this.props.userInfo
 
-      let filteredFriend = allUserInfo[0].contacts.filter(contact=>{
+      let filteredFriend = allUserInfo.contacts.filter(contact=>{
           return contact.category === 'friend'
         })
-        console.log(filteredFriend)
+    
     return(
       <Fragment>
       <div className="ui link cards">
-        {filteredFriend.map(friendMember => <FriendCard friendMember={friendMember} key={friendMember.id}/>)}
+        {filteredFriend.map(friendMember => <FriendCard friendMember={friendMember} key={friendMember.id}
+        handleClick={this.props.handleClick}/>)}
         </div>
       </Fragment>
     )

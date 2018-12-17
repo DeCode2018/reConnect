@@ -3,12 +3,10 @@ import FamilyCard from './FamilyCard'
 
 class FamilyView extends Component{
 
-
-
   render(){
     let allUserInfo = this.props.userInfo
 
-      let filteredFamily = allUserInfo[0].contacts.filter(contact=>{
+      let filteredFamily = allUserInfo.contacts.filter(contact=>{
           return contact.category === 'family'
         })
 
