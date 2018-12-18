@@ -5,6 +5,7 @@ import FriendsView from './FriendsView';
 import AssociatesView from './AssociatesView';
 import ContactView from './ContactView';
 import NewContactForm from './NewContactForm';
+import EditContactForm from './EditContactForm';
 
 class Content extends Component{
     constructor(){
@@ -25,17 +26,17 @@ class Content extends Component{
 
     //refactered from too many if and elseif statements
     switch(this.props.relationshipView) {
-      case 'Family':
+      case 'family':
         return <FamilyView userInfo={this.props.userInfo} handleClick={this.handleClick}/>;
         // eslint-disable-next-line
         break;
-      case 'Friends':
+      case 'friends':
         return <FriendsView userInfo={this.props.userInfo}
         handleClick={this.handleClick}/>;
         // eslint-disable-next-line
         break;
 
-      case 'Associates':
+      case 'associates':
         return <AssociatesView userInfo={this.props.userInfo}
         handleClick={this.handleClick}/>;
         // eslint-disable-next-line
@@ -44,8 +45,23 @@ class Content extends Component{
         return <NewContactForm userInfo={this.props.userInfo}/>;
         // eslint-disable-next-line
         break;
+      case 'edit':
+        return <EditContactForm
+        currentCard={this.state.currentCard}/>;
+        // eslint-disable-next-line
+        break;
       case this.state.currentCard:
-        return <ContactView currentCard={this.state.currentCard} />
+        return <ContactView currentCard={this.state.currentCard}
+        relationshipView={this.state.currentContainerView}
+        onDelete={this.props.onDelete}
+        userInfo={this.props.userInfo}
+        optimisticRemove={this.props.optimisticRemove}
+        handleEditClick={this.props.handleEditClick}
+      />
+        // eslint-disable-next-line
+        break;
+        case 'delete':
+        return <Instructions/>;
         // eslint-disable-next-line
         break;
       default:
