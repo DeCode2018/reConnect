@@ -16,11 +16,31 @@ class NewContactForm extends Component{
      };
    }
    handleBirthDateChange(day) {
+    let  bdate = new Date(day);
+    let  bmonth = bdate.getMonth()+1;
+    let  bdt = bdate.getDate();
+
+        if (bdt < 10) {
+          bdt = '0' + bdt;
+        }
+        if (bmonth < 10) {
+          bmonth = '0' + bmonth;
+        }
      this.setState({ selectedBirthDate: day });
 
    }
 
    handleDayChange(day) {
+     let  edate = new Date(day);
+     let  emonth = edate.getMonth()+1;
+     let  edt = edate.getDate();
+
+         if (edt < 10) {
+           edt = '0' + edt;
+         }
+         if (emonth < 10) {
+           emonth = '0' + emonth;
+         }
      this.setState({ selectedEventDate: day });
    }
 
@@ -322,6 +342,28 @@ class NewContactForm extends Component{
         <DayPickerInput className="last_event_date" onDayChange={this.handleDayChange} />
       </div>
       </div>
+
+
+      <div>
+      <div className="field" >
+      <label>Birth Date</label>
+        {selectedBirthDate && <p>Day: {selectedBirthDate.toLocaleDateString()}</p>}
+        {!selectedBirthDate}
+        <DayPickerInput className="bday" onDayChange={this.handleBirthDateChange} />
+      </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
       <div className="field">
         <label>Notes: </label>

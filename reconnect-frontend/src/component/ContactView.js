@@ -2,10 +2,30 @@ import React, { Component} from 'react';
 
 
 class ContactView extends Component{
-  // constructor(props){
-  //   super(props)
-  // }
+  // eslint-disable-next-line
+constructor(props){
+  super(props)
+}
 
+
+
+
+  handleDeleteClick=()=>{
+    fetch(`http://localhost:3000/api/v1/contacts/${this.props.currentCard.id}`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: `${this.props.currentCard.id}`})
+  })
+  let contacts = this.props.userInfo.contacts
+  let idToDelete = this.props.currentCard.id
+
+    this.props.optimisticRemove(contacts, idToDelete)
+    this.props.onDelete()
+  }
+
+  //1.tried changing just in this component
+  //2. tried changing the state in the parent with a callback in this component
+  //3. window.location.reload...works but takes back to the instructions page which is acceptable but not ideal.
 
   render(){
 
@@ -35,12 +55,12 @@ class ContactView extends Component{
         <i className="add icon"></i>
         Add Event
       </button>
-      <button className="ui labeled icon inverted blue button">
+      <button className="ui labeled icon inverted blue button" onClick={this.props.handleEditClick}>
         <i className="edit icon"></i>
         Edit
       </button>
-      <button className="ui right labeled icon inverted red button">
-        <i className="delete icon"></i>
+      <button className="ui right labeled icon inverted red button" onClick={this.handleDeleteClick}>
+        <i className="delete icon" ></i>
         Delete Contact
       </button>
     </div>
