@@ -3,26 +3,30 @@ import React, { Component } from 'react';
 class FamilyCard extends Component{
   constructor(){
     super()
+    var pastDue = new Date('2018-12-01');
 
-    var today = new Date(),
-            date =
-            (today.getFullYear())+ '-' + (today.getMonth() - 5) + '-' + (today.getDate()-4);
+      let year = pastDue.getFullYear();
+      let  month = pastDue.getMonth()+1;
+      let  dt = pastDue.getDate();
 
-
+          if (dt < 10) {
+            dt = '0' + dt;
+          }
+          if (month < 10) {
+            month = '0' + month;
+          }
+       let configPastDue = year+'-'+month+'-'+dt
 
     this.state ={
-      pastDueDate: date
+      pastDueDate: configPastDue
     }
   }
-
-
   render(){
-console.log(this.state.pastDueDate)
-console.log(this.props.familyMember.last_event_date)
     return(
+
   <div className="card" onClick={()=>this.props.handleClick(this.props.familyMember)}>
     <div className="image">
-      <img src={this.props.familyMember.contact_avatar} alt='user avatar'/>
+      <img src={this.props.familyMember.contact_avatar} alt='family Member avatar'/>
     </div>
     <div className="content">
       <div className="header">{this.props.familyMember.first_name} {this.props.familyMember.last_name}</div>
@@ -41,9 +45,11 @@ console.log(this.props.familyMember.last_event_date)
       <span className="ui right floated">
       Date of Last Event:  {new Date(this.props.familyMember.last_event_date).toDateString()}
       </span>
-    </div>}
+    </div>
+  }
 
 </div>
+
   )
 }
 }

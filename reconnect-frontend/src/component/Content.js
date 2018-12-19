@@ -26,23 +26,24 @@ class Content extends Component{
 
     //refactered from too many if and elseif statements
     switch(this.props.relationshipView) {
-      case 'family':
-        return <FamilyView userInfo={this.props.userInfo} handleClick={this.handleClick}/>;
+      case 'Family':
+        return <FamilyView userInfo={this.props.userInfo} handleClick={this.handleClick} onDelete={this.props.onDelete}/>;
         // eslint-disable-next-line
         break;
-      case 'friends':
+      case 'Friends':
         return <FriendsView userInfo={this.props.userInfo}
         handleClick={this.handleClick}/>;
         // eslint-disable-next-line
         break;
 
-      case 'associates':
+      case 'Associates':
         return <AssociatesView userInfo={this.props.userInfo}
         handleClick={this.handleClick}/>;
         // eslint-disable-next-line
         break;
       case 'add contact':
-        return <NewContactForm userInfo={this.props.userInfo}/>;
+        return <NewContactForm userInfo={this.props.userInfo}
+        onAdd={this.props.onAdd}/>;
         // eslint-disable-next-line
         break;
       case 'edit':

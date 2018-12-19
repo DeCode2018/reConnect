@@ -6,9 +6,9 @@ class FriendsView extends Component{
     let allUserInfo = this.props.userInfo
 
       let filteredFriend = allUserInfo.contacts.filter(contact=>{
-          return contact.category === 'friend'
+          return contact.category === 'Friends'
         })
-    
+
     return(
       <Fragment>
       <div className="ui link cards">

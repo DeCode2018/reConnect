@@ -1,33 +1,58 @@
-import React, { Component} from 'react';
+import React, { Component, Fragment} from 'react';
+import EventContainer from './EventContainer'
+import ExistingEventContainer from './ExistingEventContainer'
 
 
 class ContactView extends Component{
   // eslint-disable-next-line
 constructor(props){
   super(props)
+
+    this.state = {
+      eventClicked: false
+    }
 }
 
-
-
-
-  handleDeleteClick=()=>{
-    fetch(`http://localhost:3000/api/v1/contacts/${this.props.currentCard.id}`, {
-    method: 'DELETE',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({id: `${this.props.currentCard.id}`})
-  })
-  let contacts = this.props.userInfo.contacts
-  let idToDelete = this.props.currentCard.id
-
-    this.props.optimisticRemove(contacts, idToDelete)
-    this.props.onDelete()
+  handleEventClick = () =>{
+    this.setState({
+      eventClicked: !this.state.eventClicked
+    })
   }
 
-  //1.tried changing just in this component
-  //2. tried changing the state in the parent with a callback in this component
-  //3. window.location.reload...works but takes back to the instructions page which is acceptable but not ideal.
+  renderEvent = () =>{
+    switch(this.state.eventClicked){
+    case true:
+      return <EventContainer />
+      // eslint-disable-next-line
+      break;
+    case false:
+      return null
+      // eslint-disable-next-line
+        break;
+    default:
+      return null
+      }
+  }
+
+
+  handleDeleteClick=(currentCard)=>{
+    fetch(`http://localhost:3000/api/v1/contacts/${currentCard.id}`, {
+    method: 'DELETE',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id: `${currentCard.id}`})
+  }).then(res=>res.json()).then(data=>this.props.onDelete(data))
+
+
+
+  }
+
 
   render(){
+    let contactEvents = this.props.userInfo.events
+
+    let filteredEvents = contactEvents.filter(event=>{
+        return event.contact_id === this.props.currentCard.id
+      })
 
     return(
       <div className="ui items">
@@ -48,10 +73,10 @@ constructor(props){
         <div className="home_zip">Zip Code: {this.props.currentCard.home_zip}</div>
       </div>
       <div className="description">
-        <h2>Last Event: {this.props.currentCard.last_event_date}</h2>
+        <h2>Last Event: {(this.props.currentCard.last_event_date)}</h2>
         <p>Notes: {this.props.currentCard.notes}</p>
       </div>
-      <button className="ui labeled icon inverted green button">
+      <button className="ui labeled icon inverted green button" onClick={this.handleEventClick}>
         <i className="add icon"></i>
         Add Event
       </button>
@@ -59,14 +84,23 @@ constructor(props){
         <i className="edit icon"></i>
         Edit
       </button>
-      <button className="ui right labeled icon inverted red button" onClick={this.handleDeleteClick}>
+      <button className="ui right labeled icon inverted red button" onClick={()=>this.handleDeleteClick(this.props.currentCard)}>
         <i className="delete icon" ></i>
         Delete Contact
       </button>
+    <div>{this.renderEvent()}</div>
     </div>
+
   </div>
-  <h1>Events list with this contact will go here</h1>
-</div>
+  <Fragment>
+  {filteredEvents.map(event=>
+      <ExistingEventContainer eventInfo={event} key={event.id}
+      />
+
+  )}
+  </Fragment>
+  </div>
+
     )
   }
 }

@@ -2,62 +2,102 @@ import React, { Component } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
-class NewContactForm extends Component{
+class EditContactForm extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      selectedBirthDate: undefined,
+      selectedEventDate: undefined,
+      first_name: this.props.currentCard.first_name,
+      last_name: this.props.currentCard.last_name,
+      bday: this.props.currentCard.bday,
+      contact_avatar: this.props.currentCard.contact_avatar,
+      category: this.props.currentCard.category,
+      last_event_date: this.props.currentCard.last_event_date,
+      relationship: this.props.currentCard.relationship,
+      home_address: this.props.currentCard.home_address,
+      home_city: this.props.currentCard.home_city,
+      home_state: this.props.currentCard.home_state,
+      home_zip: this.props.currentCard.home_zip,
+      company_name: this.props.currentCard.company_name,
+      job_title: this.props.currentCard.job_title,
+      company_address: this.props.currentCard.company_address,
+      company_city: this.props.currentCard.company_city,
+      company_state: this.props.currentCard.company_state,
+      company_zip: this.props.currentCard.company_zip,
+      cell_num: this.props.currentCard.cell_num,
+      email_address: this.props.currentCard.email_address,
+      notes: this.props.currentCard.notes
 
-  constructor(props) {
-     super(props);
-     this.handleBirthDateChange = this.handleBirthDateChange.bind(this);
-     this.handleDayChange = this.handleDayChange.bind(this);
-     this.handleSubmit = this.handleSubmit.bind(this)
-     this.state = {
-       selectedBirthDate: undefined,
-       selectedEventDate: undefined,
-       user_id: this.props.userInfo.id
-     };
-   }
-   handleBirthDateChange(day) {
-    let  bdate = new Date(day);
-    let  byear = bdate.getFullYear();
-    let  bmonth = bdate.getMonth()+1;
-    let  bdt = bdate.getDate();
 
-        if (bdt < 10) {
-          bdt = '0' + bdt;
+    }
+
+  }
+
+  handleDayChange =(day)=> {
+    let  edate = new Date(day);
+    let  emonth = edate.getMonth()+1;
+    let  edt = edate.getDate();
+
+        if (edt < 10) {
+          edt = '0' + edt;
         }
-        if (bmonth < 10) {
-          bmonth = '0' + bmonth;
+        if (emonth < 10) {
+          emonth = '0' + emonth;
         }
-        let configbday = byear+'-'+bmonth+'-'+bdt
-       this.setState({ selectedBirthDate: configbday });
+    this.setState({ selectedEventDate: day });
+  }
 
-   }
+  handleBirthDateChange = (day)=> {
+   let  bdate = new Date(day);
+   let  bmonth = bdate.getMonth()+1;
+   let  bdt = bdate.getDate();
 
-   handleDayChange(day) {
-     let  edate = new Date(day);
-     let eyear = edate.getFullYear();
-     let  emonth = edate.getMonth()+1;
-     let  edt = edate.getDate();
+       if (bdt < 10) {
+         bdt = '0' + bdt;
+       }
+       if (bmonth < 10) {
+         bmonth = '0' + bmonth;
+       }
+    this.setState({ selectedBirthDate: day });
 
-         if (edt < 10) {
-           edt = '0' + edt;
-         }
-         if (emonth < 10) {
-           emonth = '0' + emonth;
-         }
-      let configday = eyear+'-'+emonth+'-'+edt
-     this.setState({ selectedEventDate: configday });
-   }
+  }
 
-   handleSubmit =(event)=>{
-      event.preventDefault();
-      const data = new FormData(event.target)
-      fetch('http://localhost:3000/api/v1/contacts', {
-      method: 'POST',
+  updateField =(event)=>{
+    this.setState({
+      [event.target.name]: event.target.value
+      //[Refactored]
+      // last_name: event.currentTarget.value,
+      // bday: event.target.value,
+      // contact_avatar: event.target.value,
+      // category: event.target.value,
+      // last_event_date: event.target.value,
+      // relationship: event.target.value,
+      // home_address: event.target.value,
+      // home_city: event.target.value,
+      // home_state: event.target.value,
+      // home_zip: event.target.value,
+      // company_name: event.target.value,
+      // job_title: event.target.value,
+      // company_address: event.target.value,
+      // company_city: event.target.value,
+      // company_state: event.target.value,
+      // company_zip: event.target.value,
+      // cell_num: event.target.value,
+      // email_address: event.target.value,
+      // notes: event.target.value
+    })
+  }
+
+  persistForm = (event)=>{
+    event.preventDefault()
+    const data = new FormData(event.target)
+    fetch(`http://localhost:3000/api/v1/contacts/${this.props.currentCard.id}`, {
+      method: "PATCH",
       headers: {
-            'Content-Type': 'application/json'
-        },
+        "Content-type" : "application/json"
+      },
       body: JSON.stringify({
-        user_id: this.state.user_id,
         first_name: data.get('first_name'),
         last_name: data.get('last_name'),
         bday: this.state.selectedBirthDate,
@@ -78,27 +118,30 @@ class NewContactForm extends Component{
         cell_num: data.get('cell_num'),
         email_address: data.get('email_address'),
         notes: data.get('notes')
+
+
       })
-      })
-      .then(response => response.json())
-      .then(data => this.props.onAdd(data))
-   }
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    
+  }
 
   render(){
     const { selectedBirthDate } = this.state;
     const { selectedEventDate } = this.state;
   return(
     <div className="ui main container grid four wide column centered">
-    <form onSubmit={this.handleSubmit} className="ui form six wide column centered" >
+    <form onSubmit={this.persistForm} className="ui form six wide column centered" >
       <h4 className="ui dividing header">Contact Information</h4>
       <div className="field">
       <label>Name</label>
       <div className="two fields">
       <div className="field">
-        <input type="text" id="first_name" name="first_name" placeholder="First Name"/>
+        <input type="text" id="first_name" name="first_name" value={`${this.state.first_name}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       <div className="field">
-        <input type="text" id="last_name" name="last_name" placeholder="Last Name"/>
+        <input type="text" id="last_name" name="last_name" placeholder="Last Name" value={`${this.state.last_name}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
       </div>
@@ -107,11 +150,11 @@ class NewContactForm extends Component{
 
       <div className="field">
       <label>Category</label>
-      <select className="ui fluid dropdown" id="category" name="category">
+      <select className="ui fluid dropdown" id="category" name="category" value={`${this.state.category}`} onChange={(event)=>this.updateField(event)}>
       <option value="">Category</option>
-      <option value="Family">Family</option>
-      <option value="Friends">Friends</option>
-      <option value="Associates">Associates</option>
+      <option value="family">Family</option>
+      <option value="friend">Friend</option>
+      <option value="associate">Associate</option>
       </select>
       </div>
 
@@ -119,7 +162,7 @@ class NewContactForm extends Component{
       <label>Relationship</label>
       <div className="field">
       <div className="field">
-        <input type="text" id="relationship" name="relationship" placeholder="Relationship (e.g. Cousin, Code4Change Member, etc.)"/>
+        <input type="text" id="relationship" name="relationship" placeholder="Relationship (e.g. Cousin, Code4Change Member, etc.)" value={`${this.state.relationship}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
       </div>
@@ -128,9 +171,9 @@ class NewContactForm extends Component{
       <div>
       <div className="field" >
       <label>Birth Date</label>
-        {selectedBirthDate && <p>Day: {selectedBirthDate}</p>}
+        {selectedBirthDate && <p>Day: {selectedBirthDate.toLocaleDateString()}</p>}
         {!selectedBirthDate}
-        <DayPickerInput className="bday" onDayChange={this.handleBirthDateChange} />
+        <DayPickerInput className="bday" onDayChange={this.handleBirthDateChange} value={`${this.state.bday}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
 
@@ -139,7 +182,7 @@ class NewContactForm extends Component{
       <div className="field">
       <div className="field">
       <label>Image</label>
-        <input type="text" name="contact_avatar" placeholder="Insert Contact Image "/>
+        <input type="text" name="contact_avatar" placeholder="Insert Contact Image " value={`${this.state.contact_avatar}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
       </div>
@@ -150,7 +193,7 @@ class NewContactForm extends Component{
       <label>Home Address</label>
       <div className="field">
       <div className="field">
-        <input type="text" name="home_address" placeholder="Street Address"/>
+        <input type="text" name="home_address" placeholder="Street Address" value={`${this.state.home_address}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
       </div>
@@ -158,12 +201,12 @@ class NewContactForm extends Component{
       <div className="two field">
       <div className="two field">
       <label>City</label>
-        <input type="text" name="home_city" placeholder="City"/>
+        <input type="text" name="home_city" placeholder="City" value={`${this.state.home_city}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       <div className="field">
 
       <label>State</label>
-      <select className="ui fluid dropdown" name="home_state">
+      <select className="ui fluid dropdown" name="home_state" value={`${this.state.home_state}`} onChange={(event)=>this.updateField(event)}>
         <option value="">State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
@@ -220,7 +263,7 @@ class NewContactForm extends Component{
       <div className= "field">
       <div className="four wide field">
       <label>Zip Code</label>
-        <input type="text" name="home_zip" placeholder="zip code"/>
+        <input type="text" name="home_zip" placeholder="zip code" value={`${this.state.home_zip}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
       </div>
@@ -228,27 +271,27 @@ class NewContactForm extends Component{
       <label>Company Name</label>
       <div className="field">
       <div className="field">
-        <input type="text" name="company_name" placeholder="(e.g. Big Company Inc.)"/>
+        <input type="text" name="company_name" placeholder="(e.g. Big Company Inc.)" value={`${this.state.company_name}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
 
       <label>Job Title</label>
       <div className="field">
       <div className="field">
-        <input type="text" name="job_title" placeholder="(e.g. Chief Executive Officer)"/>
+        <input type="text" name="job_title" placeholder="(e.g. Chief Executive Officer)" value={`${this.state.job_title}`} onChange={(event)=>this.updateField(event)}/>
       </div>
       </div>
 
 <label>Work Address</label>
 <div className="field">
 <div className="field">
-  <input type="text" name="company_address" placeholder="Street Address"/>
+  <input type="text" name="company_address" placeholder="Street Address" value={`${this.state.company_address}`} onChange={(event)=>this.updateField(event)}/>
 </div>
 
 <div className="field">
 <div className="field">
 <label>Work City</label>
-  <input type="text" name="company_city" placeholder="City"/>
+  <input type="text" name="company_city" placeholder="City" value={`${this.state.company_city}`} onChange={(event)=>this.updateField(event)}/>
 </div>
 </div>
 
@@ -257,7 +300,7 @@ class NewContactForm extends Component{
 <div className="field">
 <div className="field">
 <label>State</label>
-<select className="ui fluid dropdown" name="company_state">
+<select className="ui fluid dropdown" name="company_state" value={`${this.state.company_state}`} onChange={(event)=>this.updateField(event)}>
   <option value="">State</option>
 <option value="AL">Alabama</option>
 <option value="AK">Alaska</option>
@@ -313,19 +356,19 @@ class NewContactForm extends Component{
 </select>
 <div className="four wide field">
   <label>Zip Code </label>
-  <input type="text" name="company_zip" placeholder="zip code"/>
+  <input type="text" name="company_zip" placeholder="zip code" value={`${this.state.company_zip}`} onChange={(event)=>this.updateField(event)}/>
 </div>
 </div>
 
 
 <div className="field">
   <label>Cell # </label>
-  <input type="text" name="cell_num" placeholder="(e.g. 555-555-5555)"/>
+  <input type="text" name="cell_num" placeholder="(e.g. 555-555-5555)" value={`${this.state.cell_num}`} onChange={(event)=>this.updateField(event)}/>
 </div>
 
 <div className="field">
   <label>Email </label>
-  <input type="text" name="email_address" placeholder="(e.g. first.last@email.com)"/>
+  <input type="text" name="email_address" placeholder="(e.g. first.last@email.com)" value={`${this.state.email_address}`} onChange={(event)=>this.updateField(event)}/>
 </div>
 
 
@@ -338,15 +381,16 @@ class NewContactForm extends Component{
       <div>
       <div className="field">
       <label>Date of Last Event:</label>
-        {selectedEventDate && <p>Day: {selectedEventDate}</p>}
+        {selectedEventDate && <p>Day: {selectedEventDate.toLocaleDateString()}</p>}
         {!selectedEventDate}
-        <DayPickerInput className="last_event_date" onDayChange={this.handleDayChange} />
+        <DayPickerInput className="last_event_date" onDayChange={this.handleDayChange} value={`${this.state.last_event_date}`}/>
       </div>
       </div>
 
+
       <div className="field">
         <label>Notes: </label>
-        <textarea type="text field" name="notes"></textarea>
+        <textarea type="text field" name="notes" value={`${this.state.notes}`} onChange={(event)=>this.updateField(event)}></textarea>
       </div>
 
 
@@ -358,4 +402,5 @@ class NewContactForm extends Component{
   }
 }
 
-export default NewContactForm
+
+export default EditContactForm

@@ -20,7 +20,7 @@ class Api::V1::ContactsController < ApplicationController
     def destroy
       contactId = @contact.id
       @contact.destroy
-      render json: {message: " Contact: `${contact.first_name} ${contact.last_name}` Deleted"}
+      render json: @contact
     end
 
     def show
