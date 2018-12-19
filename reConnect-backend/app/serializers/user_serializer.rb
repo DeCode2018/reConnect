@@ -35,7 +35,9 @@ class UserSerializer < ActiveModel::Serializer
         name: event.name,
         descriptioin: event.description,
         location: event.location,
-        event_date: event.event_date
+        event_date: event.event_date,
+        contact_id: event.contact_id,
+        user_id: event.user_id
        }
     end
   end

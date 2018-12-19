@@ -6,7 +6,7 @@ class AssociatesView extends Component{
     let allUserInfo = this.props.userInfo
 
       let filteredAssociate = allUserInfo.contacts.filter(contact=>{
-          return contact.category === 'associate'
+          return contact.category === 'Associates'
         })
 
     return(

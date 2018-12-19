@@ -12,65 +12,79 @@ class BodyContainer extends Component {
         currentContainerView:''
       };
     }
-
+    //GET Fetch call for all of users 1's Data...may need to adjust this on AUTH setup
     componentDidMount() {
       fetch('http://localhost:3000/api/v1/users/1')
         .then(response => response.json())
         .then(usersData => this.setState({ usersData }));
     }
-
+    //based on users input on relationship drop down screen this function set's state to update to the appropriate view.
     relationshipView = (event) =>{
       this.setState({
         currentContainerView: event.value
       })
     }
-
+    //function to call render of EditContactForm
     handleEditClick =() =>{
       this.setState({
         currentContainerView: "edit"
       })
     }
-
-    onDelete = (currentCard) =>{
-      //try updating usersData where you remove (splice off) the contact with the appropriate id. That change of state should cause the optimistic re-render you are looking for per Melanie.
-      // window.location.reload()
-
-      this.setState({
-        currentContainerView: [],
-
+    //callback function to setState of usersData to reflect the usersData minus the deleted object
+    onDelete = (deletedCard) =>{
+      console.log(deletedCard.category)
+      var filtContacts = this.state.usersData.contacts.filter(contact=>{
+        return contact.id !== deletedCard.id
       })
-    }
-
-    optimisticRemove = (contacts, idToDelete)=>{
-     return contacts.filter(contact=>{
-       return contact !== idToDelete
-
-     })
-   }
-
-    contactView = (familyMember) =>{
+      console.log(filtContacts)
       this.setState({
-        currentContainerView: familyMember
+         usersData: {...this.state.usersData, contacts:filtContacts},
+         currentContainerView:deletedCard.category
+      })
+
+      }
+
+      onAdd = (addedContact) =>{
+
+      var addContacts = this.state.usersData.contacts
+          addContacts.push(addedContact)
+        console.log(addedContact)
+        console.log(addContacts)
+        this.setState({
+           usersData: {...this.state.usersData, contacts:addContacts},
+           currentContainerView:`${addedContact.category}`
+        })
+
+        }
+
+    contactView = (contactObject) =>{
+
+      this.setState({
+        currentContainerView: contactObject
       })
     }
 
     handleAddButton = () =>{
+
       this.setState({
         currentContainerView: "add contact"
       })
     }
 
   render(){
-    const options = ['Select a Relationship Type','family', 'friends', 'associates']
+    const options = ['Select a Relationship Type','Family', 'Friends', 'Associates']
     return(
       <Fragment>
       <Dropdown options={options} onChange={this.relationshipView}  placeholder="Select a Relationship Type" value={this.state.currentContainerView}/>
       <Content relationshipView={this.state.currentContainerView} userInfo={this.state.usersData}
       contactView={this.contactView}
       onDelete={this.onDelete}
+      onAdd={this.onAdd}
       handleEditClick={this.handleEditClick}
       optimisticRemove={this.optimisticRemove}/>
-      <button className="ui black button" onClick={this.handleAddButton}>Add A Connection</button>
+      <button className="ui black button" onClick={this.handleAddButton}
+
+      >Add A Connection</button>
       </Fragment>
 
 
