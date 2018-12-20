@@ -123,8 +123,8 @@ class EditContactForm extends Component{
       })
     })
     .then(response => response.json())
-    .then(data => console.log(data))
-    
+    .then(data => this.props.onEdit(data))
+
   }
 
   render(){
@@ -152,9 +152,9 @@ class EditContactForm extends Component{
       <label>Category</label>
       <select className="ui fluid dropdown" id="category" name="category" value={`${this.state.category}`} onChange={(event)=>this.updateField(event)}>
       <option value="">Category</option>
-      <option value="family">Family</option>
-      <option value="friend">Friend</option>
-      <option value="associate">Associate</option>
+      <option value="Family">Family</option>
+      <option value="Friends">Friend</option>
+      <option value="Associates">Associate</option>
       </select>
       </div>
 

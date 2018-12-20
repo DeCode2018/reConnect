@@ -32,7 +32,6 @@ class BodyContainer extends Component {
     }
     //callback function to setState of usersData to reflect the usersData minus the deleted object
     onDelete = (deletedCard) =>{
-      console.log(deletedCard.category)
       var filtContacts = this.state.usersData.contacts.filter(contact=>{
         return contact.id !== deletedCard.id
       })
@@ -57,6 +56,27 @@ class BodyContainer extends Component {
 
         }
 
+        onEdit = (editedContact) =>{
+
+        var editContacts = this.state.usersData.contacts
+            editContacts.forEach(editcontact=>{
+              console.log(editedContact)
+              console.log(editcontact)
+              if (editcontact.id === editedContact.id){
+                var a = editContacts.indexOf(editcontact)
+                console.log(editedContact)
+                console.log(editcontact)
+                return editContacts[a] = editedContact
+              }
+            })
+
+          this.setState({
+             usersData: {...this.state.usersData, contacts:editContacts},
+             currentContainerView:`${editedContact.category}`
+          })
+
+          }
+
     contactView = (contactObject) =>{
 
       this.setState({
@@ -80,6 +100,7 @@ class BodyContainer extends Component {
       contactView={this.contactView}
       onDelete={this.onDelete}
       onAdd={this.onAdd}
+      onEdit={this.onEdit}
       handleEditClick={this.handleEditClick}
       optimisticRemove={this.optimisticRemove}/>
       <button className="ui black button" onClick={this.handleAddButton}
