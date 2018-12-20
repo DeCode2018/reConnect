@@ -27,18 +27,23 @@ class Content extends Component{
     //refactered from too many if and elseif statements
     switch(this.props.relationshipView) {
       case 'Family':
-        return <FamilyView userInfo={this.props.userInfo} handleClick={this.handleClick} onDelete={this.props.onDelete}/>;
+        return <FamilyView userInfo={this.props.userInfo} handleClick={this.handleClick} onDelete={this.props.onDelete}
+        onEdit={this.props.onEdit}/>;
         // eslint-disable-next-line
         break;
       case 'Friends':
         return <FriendsView userInfo={this.props.userInfo}
-        handleClick={this.handleClick}/>;
+        handleClick={this.handleClick}
+        onDelete={this.props.onDelete}
+        onEdit={this.props.onEdit}/>;
         // eslint-disable-next-line
         break;
 
       case 'Associates':
         return <AssociatesView userInfo={this.props.userInfo}
-        handleClick={this.handleClick}/>;
+        handleClick={this.handleClick}
+        onDelete={this.props.onDelete}
+        onEdit={this.props.onEdit}/>;
         // eslint-disable-next-line
         break;
       case 'add contact':
@@ -48,13 +53,15 @@ class Content extends Component{
         break;
       case 'edit':
         return <EditContactForm
-        currentCard={this.state.currentCard}/>;
+        currentCard={this.state.currentCard}
+        onEdit={this.props.onEdit}/>;
         // eslint-disable-next-line
         break;
       case this.state.currentCard:
         return <ContactView currentCard={this.state.currentCard}
         relationshipView={this.state.currentContainerView}
         onDelete={this.props.onDelete}
+        onEdit={this.props.onEdit}
         userInfo={this.props.userInfo}
         optimisticRemove={this.props.optimisticRemove}
         handleEditClick={this.props.handleEditClick}
