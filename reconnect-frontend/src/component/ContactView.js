@@ -22,7 +22,9 @@ constructor(props){
   renderEvent = () =>{
     switch(this.state.eventClicked){
     case true:
-      return <EventContainer />
+      return <EventContainer userInfo={this.props.userInfo}
+      currentCard={this.props.currentCard}
+      onAddEvent={this.props.onAddEvent}/>
       // eslint-disable-next-line
       break;
     case false:
@@ -80,7 +82,8 @@ constructor(props){
         <i className="add icon"></i>
         Add Event
       </button>
-      <button className="ui labeled icon inverted blue button" onClick={this.props.handleEditClick}>
+      <button className="ui labeled icon inverted blue button" onClick={this.props.handleEditClick}
+      >
         <i className="edit icon"></i>
         Edit
       </button>
@@ -93,8 +96,9 @@ constructor(props){
 
   </div>
   <Fragment>
-  {filteredEvents.map(event=>
-      <ExistingEventContainer eventInfo={event} key={event.id}
+  {filteredEvents.reverse().map(event=>
+      <ExistingEventContainer eventInfo={event}
+      currentCard={this.props.currentCard} onDeleteEvent={this.props.onDeleteEvent}  key={event.id}
       />
 
   )}
