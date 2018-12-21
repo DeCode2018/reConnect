@@ -5,16 +5,19 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class EventContainer extends Component{
 
-  constructor(){
-    super()
-    this.handleEventDateChange = this.handleEventDateChange.bind(this);
+  constructor(props){
+    super(props)
+    this.handleChange = this.handleChange.bind(this);
     this.state = {
       startDate: new Date(),
-      selectedEventDate: ''
+      userId: this.props.userInfo.id,
+      contactId: this.props.currentCard.id
+
     };
+    console.log(this.props.userInfo)
   }
 
-  handleEventDateChange(day) {
+  handleChange(day) {
    let  date = new Date(day);
    let  month = date.getMonth()+1;
    let  dt = date.getDate();
@@ -25,29 +28,34 @@ class EventContainer extends Component{
        if (month < 10) {
          month = '0' + month;
        }
-    this.setState({ selectedEventDate: day });
+    this.setState({ startDate: day });
 
   }
 
+
+
   handleEventSubmit = (event)=>{
+    event.preventDefault()
     const data = new FormData(event.target)
-    fetch(`http://localhost:3000/api/v1/contacts/${this.props.currentCard.id}`, {
+    fetch(`http://localhost:3000/api/v1/events`, {
       method: "POST",
       headers: {
         "Content-type" : "application/json"
       },
       body: JSON.stringify({
-        event_name: data.get('event_name'),
-        event_description: data.get('event_description'),
-        event_location: data.get('event_location'),
-        eventday: this.state.selectedBirthDate,
+        user_id: parseInt(this.state.userId),
+        contact_id: parseInt(this.state.contactId),
+        name: data.get('event_name'),
+        description: data.get('event_description'),
+        location: data.get('event_location'),
+        event_date: this.state.startDate,
 
       })
     })
     .then(response => response.json())
-    .then(data => {alert(`Contact has been updated`)
-    })
-  }
+    .then(data => this.props.onAddEvent(data))
+    }
+
 
   render(){
     const { selectedEventDate } = this.state;

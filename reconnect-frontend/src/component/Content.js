@@ -18,6 +18,7 @@ class Content extends Component{
     }
 
     handleClick = (contact)=>{
+
       this.setState({currentCard:contact})
       this.props.contactView(contact)
     }
@@ -62,6 +63,8 @@ class Content extends Component{
         relationshipView={this.state.currentContainerView}
         onDelete={this.props.onDelete}
         onEdit={this.props.onEdit}
+        onAddEvent={this.props.onAddEvent}
+        onDeleteEvent={this.props.onDeleteEvent}
         userInfo={this.props.userInfo}
         optimisticRemove={this.props.optimisticRemove}
         handleEditClick={this.props.handleEditClick}

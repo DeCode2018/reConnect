@@ -35,7 +35,7 @@ class BodyContainer extends Component {
       var filtContacts = this.state.usersData.contacts.filter(contact=>{
         return contact.id !== deletedCard.id
       })
-      console.log(filtContacts)
+
       this.setState({
          usersData: {...this.state.usersData, contacts:filtContacts},
          currentContainerView:deletedCard.category
@@ -43,12 +43,23 @@ class BodyContainer extends Component {
 
       }
 
+      onDeleteEvent = (deletedEvent) =>{
+        console.log(deletedEvent)
+        var filtEvents = this.state.usersData.events.filter(event=>{
+          return event.id !== deletedEvent
+        })
+        console.log(filtEvents)
+        this.setState({
+           usersData: {...this.state.usersData, events:filtEvents}
+        })
+
+        }
+
       onAdd = (addedContact) =>{
 
       var addContacts = this.state.usersData.contacts
           addContacts.push(addedContact)
-        console.log(addedContact)
-        console.log(addContacts)
+
         this.setState({
            usersData: {...this.state.usersData, contacts:addContacts},
            currentContainerView:`${addedContact.category}`
@@ -56,16 +67,25 @@ class BodyContainer extends Component {
 
         }
 
+        onAddEvent = (addedEvent) =>{
+
+        var addEvents = this.state.usersData.events
+            addEvents.push(addedEvent)
+
+          this.setState({
+             usersData: {...this.state.usersData, events:addEvents}
+          })
+
+          }
+
         onEdit = (editedContact) =>{
 
         var editContacts = this.state.usersData.contacts
             editContacts.forEach(editcontact=>{
-              console.log(editedContact)
-              console.log(editcontact)
+
               if (editcontact.id === editedContact.id){
                 var a = editContacts.indexOf(editcontact)
-                console.log(editedContact)
-                console.log(editcontact)
+
                 return editContacts[a] = editedContact
               }
             })
@@ -100,6 +120,8 @@ class BodyContainer extends Component {
       contactView={this.contactView}
       onDelete={this.onDelete}
       onAdd={this.onAdd}
+      onAddEvent={this.onAddEvent}
+      onDeleteEvent={this.onDeleteEvent}
       onEdit={this.onEdit}
       handleEditClick={this.handleEditClick}
       optimisticRemove={this.optimisticRemove}/>

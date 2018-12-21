@@ -7,7 +7,7 @@ class Api::V1::EventsController < ApplicationController
     end
 
     def create
-      event = Event.create(event_params)
+      event = Event.create!(event_params)
       render json: event, status: 201
     end
 
@@ -28,7 +28,7 @@ class Api::V1::EventsController < ApplicationController
 
     private
     def event_params
-      params.permit(:name, :description, :location, :event_date)
+      params.require(:event).permit(:id, :user_id, :contact_id, :name, :description, :location, :event_date)
     end
 
     def set_event
