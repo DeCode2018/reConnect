@@ -1,6 +1,7 @@
-import React, { Component, Fragment} from 'react';
-import EventContainer from './EventContainer'
-import ExistingEventContainer from './ExistingEventContainer'
+import React, { Component} from 'react';
+import AddEventContainer from './AddEventContainer'
+import EventsContainer from './EventsContainer'
+
 
 
 class ContactView extends Component{
@@ -9,7 +10,7 @@ constructor(props){
   super(props)
 
     this.state = {
-      eventClicked: false
+      eventClicked: false,
     }
 }
 
@@ -22,9 +23,10 @@ constructor(props){
   renderEvent = () =>{
     switch(this.state.eventClicked){
     case true:
-      return <EventContainer userInfo={this.props.userInfo}
+      return <AddEventContainer userInfo={this.props.userInfo}
       currentCard={this.props.currentCard}
-      onAddEvent={this.props.onAddEvent}/>
+      onAddEvent={this.props.onAddEvent}
+      handleEventClick={this.handleEventClick}/>
       // eslint-disable-next-line
       break;
     case false:
@@ -50,11 +52,10 @@ constructor(props){
 
 
   render(){
-    let contactEvents = this.props.userInfo.events
 
-    let filteredEvents = contactEvents.filter(event=>{
-        return event.contact_id === this.props.currentCard.id
-      })
+
+
+
 
     return(
       <div className="ui items">
@@ -95,14 +96,12 @@ constructor(props){
     </div>
 
   </div>
-  <Fragment>
-  {filteredEvents.reverse().map(event=>
-      <ExistingEventContainer eventInfo={event}
-      currentCard={this.props.currentCard} onDeleteEvent={this.props.onDeleteEvent}  key={event.id}
-      />
 
-  )}
-  </Fragment>
+  <EventsContainer eventInfo={this.props.userInfo.events}
+  currentCard={this.props.currentCard}/>
+
+
+
   </div>
 
     )
@@ -110,3 +109,25 @@ constructor(props){
 }
 
 export default ContactView
+
+
+// {filteredEvents.reverse().map(event=>
+//     (new Date(event.event_date) < new Date(today))?
+//
+//
+//     <OverdueEventContainer eventInfo={event}
+//     currentCard={this.props.currentCard} onDeleteEvent={this.props.onDeleteEvent}
+//     eventStatus={this.state.eventStatus}
+//     key={event.id}
+//     />
+//
+//   :
+//
+//   <UpcomingEventContainer eventInfo={event}
+//   currentCard={this.props.currentCard} onDeleteEvent={this.props.onDeleteEvent}
+//   eventStatus={this.state.eventStatus}
+//   key={event.id}
+//   />
+//
+//
+// )}

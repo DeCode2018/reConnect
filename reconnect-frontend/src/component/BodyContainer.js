@@ -69,13 +69,15 @@ class BodyContainer extends Component {
 
         onAddEvent = (addedEvent) =>{
 
+          console.log(addedEvent)
+
         var addEvents = this.state.usersData.events
             addEvents.push(addedEvent)
-
+            console.log(addEvents)
           this.setState({
              usersData: {...this.state.usersData, events:addEvents}
           })
-
+          console.log(this.state.usersData)
           }
 
         onEdit = (editedContact) =>{
