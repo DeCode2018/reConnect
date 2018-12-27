@@ -47,35 +47,35 @@ dustin.contacts.create(first_name:'Joe', last_name:'Rogers', contact_avatar:'htt
 
 
 #-----------------------------Events--------------------------------------------
-dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'20191119T083748-0600', contact_id: 3)
-dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'20190112T083748-0600', contact_id: 3)
-dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10', contact_id: 3)
-dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'20190707T084530-0600', contact_id: 3)
-dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'20190227T033000-0600', contact_id: 3)
+dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'10-10-2018 12:00', contact_id: 3)
+dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'10-10-2017 12:00', contact_id: 3)
+dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'03-10-2016', contact_id: 3)
+dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'10-10-2015 12:00', contact_id: 3)
+dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'01-10-2018 12:00', contact_id: 3)
 
-dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'20191119T083748-0600', contact_id: 7)
-dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'20190112T083748-0600', contact_id: 7)
-dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10', contact_id: 7)
-dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'20190707T084530-0600', contact_id: 7)
-dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'20190227T033000-0600', contact_id: 7)
-
-
-dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'20191119T083748-0600', contact_id: 10)
-dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'20190112T083748-0600', contact_id: 10)
-dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10', contact_id: 10)
-dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'20190707T084530-0600', contact_id: 10)
-dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'20190227T033000-0600', contact_id: 10)
+dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'01-10-2018 12:00', contact_id: 7)
+dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'01-01-2018 12:00', contact_id: 7)
+dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'03-10-2019', contact_id: 7)
+dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'01-01-2018 12:00', contact_id: 7)
+dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'01-01-2018 12:00', contact_id: 7)
 
 
-dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'20191119T083748-0600', contact_id: 12)
-dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'20190112T083748-0600', contact_id: 12)
-dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10', contact_id: 12)
-dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'20190707T084530-0600', contact_id: 12)
-dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'20190227T033000-0600', contact_id: 12)
+dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'2019-01-10 12:00', contact_id: 10)
+dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'2018-03-10 12:00', contact_id: 10)
+dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2017-03-10', contact_id: 10)
+dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'01-01-2018 12:00', contact_id: 10)
+dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'2018-06-10 12:00', contact_id: 10)
 
 
-dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'20191119T083748-0600', contact_id: 20)
-dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'20190112T083748-0600', contact_id: 20)
-dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10', contact_id: 20)
-dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'20190707T084530-0600', contact_id: 20)
-dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'20190227T033000-0600', contact_id: 20)
+dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'01-01-2018 12:00', contact_id: 12)
+dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'01-01-2018 12:00', contact_id: 12)
+dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10 12:00', contact_id: 12)
+dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'01-01-2018 12:00', contact_id: 12)
+dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'2019-07-10 12:00', contact_id: 12)
+
+
+dustin.events.create(name:'movies', description:'watch latest Avengers movie',location:'Regal D.C.', event_date:'01-01-2018 12:00', contact_id: 20)
+dustin.events.create(name:'Capitals vs Tampa Bay Lightning', description:'watch Capitals play T.B. lightning at Capitals Arena',location:'Capitals Arena', event_date:'01-01-2018 12:00', contact_id: 20)
+dustin.events.create(name:'Drinking', description:'bar hoppin on Ybor',location:'Ybor in Tampa', event_date:'2019-03-10 12:00', contact_id: 20)
+dustin.events.create(name:'D.C. United vs ATL United', description:'watch D.C. United match against Atlanta United',location:'Audi Stadium', event_date:'01-01-2018 12:00', contact_id: 20)
+dustin.events.create(name:'Drake and The Migos', description:'Drake and Migos concert',location:'Capital One Arena', event_date:'01-01-2018 12:00', contact_id: 20)

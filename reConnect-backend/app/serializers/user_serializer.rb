@@ -33,7 +33,7 @@ class UserSerializer < ActiveModel::Serializer
     self.object.events.map do |event|
       { id: event.id,
         name: event.name,
-        descriptioin: event.description,
+        description: event.description,
         location: event.location,
         event_date: event.event_date,
         contact_id: event.contact_id,
