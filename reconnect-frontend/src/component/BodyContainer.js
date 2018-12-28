@@ -99,6 +99,52 @@ class BodyContainer extends Component {
 
           }
 
+    onUpdateLastEventDay = (updatedEvent,currentCard) =>{
+           console.log(updatedEvent)
+           console.log(currentCard)
+
+          var updateContactsLastEvent = this.state.usersData.events
+              updateContactsLastEvent.forEach(contactToUpdate=>{
+
+                if (contactToUpdate.id === updatedEvent.id){
+
+                  return currentCard.last_event_date = updatedEvent.event_date
+
+                }
+              })
+
+            this.setState({
+               usersData: {...this.state.usersData, events:updateContactsLastEvent},
+               // currentContainerView:`${currentCard.category}`
+            })
+
+
+            fetch(`http://localhost:3000/api/v1/contacts/${currentCard.id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-type" : "application/json"
+              },
+              body: JSON.stringify({
+                last_event_date: currentCard.last_event_date,
+                status: updatedEvent.status
+
+              })
+            })
+
+            fetch(`http://localhost:3000/api/v1/events/${updatedEvent.id}`, {
+              method: "PATCH",
+              headers: {
+                "Content-type" : "application/json"
+              },
+              body: JSON.stringify({
+                status: updatedEvent.status
+
+              })
+            })
+
+      }
+
+
     contactView = (contactObject) =>{
 
       this.setState({
@@ -113,6 +159,8 @@ class BodyContainer extends Component {
       })
     }
 
+
+
   render(){
     const options = ['Select a Relationship Type','Family', 'Friends', 'Associates']
     return(
@@ -126,6 +174,7 @@ class BodyContainer extends Component {
       onDeleteEvent={this.onDeleteEvent}
       onEdit={this.onEdit}
       handleEditClick={this.handleEditClick}
+      onUpdateLastEventDay={this.onUpdateLastEventDay}
       optimisticRemove={this.optimisticRemove}/>
       <button className="ui black button" onClick={this.handleAddButton}
 

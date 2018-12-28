@@ -65,6 +65,7 @@ class Content extends Component{
         onEdit={this.props.onEdit}
         onAddEvent={this.props.onAddEvent}
         onDeleteEvent={this.props.onDeleteEvent}
+        onUpdateLastEventDay={this.props.onUpdateLastEventDay}
         userInfo={this.props.userInfo}
         optimisticRemove={this.props.optimisticRemove}
         handleEditClick={this.props.handleEditClick}
