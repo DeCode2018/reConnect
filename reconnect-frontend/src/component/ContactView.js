@@ -98,7 +98,9 @@ constructor(props){
   </div>
 
   <EventsContainer eventInfo={this.props.userInfo.events}
-  currentCard={this.props.currentCard}/>
+  currentCard={this.props.currentCard}
+  onUpdateLastEventDay={this.props.onUpdateLastEventDay}
+  onDeleteEvent={this.props.onDeleteEvent}/>
 
 
 
