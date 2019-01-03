@@ -79,7 +79,7 @@ class NewContactForm extends Component{
         if (bmonth < 10) {
           bmonth = '0' + bmonth;
         }
-        let configbday = byear+'-'+bmonth+'-'+bdt
+        let configbday = bmonth+'-'+bdt+'-'+byear
        this.setState({ selectedBirthDate: configbday });
 
    }
@@ -96,7 +96,7 @@ class NewContactForm extends Component{
          if (emonth < 10) {
            emonth = '0' + emonth;
          }
-      let configday = eyear+'-'+emonth+'-'+edt
+      let configday = emonth+'-'+edt+'-'+eyear
      this.setState({ selectedEventDate: configday });
    }
 
@@ -303,13 +303,13 @@ class NewContactForm extends Component{
         <input type="text" id="first_name" name="first_name" placeholder="First Name"
         value={this.state.first_name}
         onChange={this.onInputChange}
-        error={this.state.first_nameError}/>
+        error={this.state.first_nameError.toString()}/>
       </div>
       <div className="field">
         <input type="text" id="last_name" name="last_name" placeholder="Last Name"
         value={this.state.last_name}
         onChange={this.onInputChange}
-        error={this.state.last_nameError}/>
+        error={this.state.last_nameError.toString()}/>
       </div>
       </div>
       </div>
@@ -321,7 +321,7 @@ class NewContactForm extends Component{
       <select className="ui fluid dropdown" id="category" name="category"
       value={this.state.category}
       onChange={this.onInputChange}
-      error={this.state.categoryError}>
+      error={this.state.categoryError.toString()}>
       <option value="">Category</option>
       <option value="Family">Family</option>
       <option value="Friends">Friends</option>
@@ -336,7 +336,7 @@ class NewContactForm extends Component{
         <input type="text" id="relationship" name="relationship" placeholder="Relationship (e.g. Cousin, Code4Change Member, etc.)"
         value={this.state.relationship}
         onChange={this.onInputChange}
-        error={this.state.relationshipError}/>
+        error={this.state.relationshipError.toString()}/>
       </div>
       </div>
       </div>
@@ -350,7 +350,7 @@ class NewContactForm extends Component{
         <DayPickerInput className="bday" onDayChange={this.handleBirthDateChange}
         value={this.state.bday}
         onChange={this.onInputChange}
-        error={this.state.bdayError}/>
+        error={this.state.bdayError.toString()}/>
       </div>
       </div>
 
@@ -362,7 +362,7 @@ class NewContactForm extends Component{
         <input type="text" name="contact_avatar" placeholder="Insert Contact Image "
         value={this.state.contact_avatar}
         onChange={this.onInputChange}
-        error={this.state.contact_avatarError}/>
+        error={this.state.contact_avatarError.toString()}/>
       </div>
       </div>
       </div>
@@ -376,7 +376,7 @@ class NewContactForm extends Component{
         <input type="text" name="home_address" placeholder="Street Address"
         value={this.state.home_address}
         onChange={this.onInputChange}
-        error={this.state.home_addressError}/>
+        error={this.state.home_addressError.toString()}/>
       </div>
       </div>
       </div>
@@ -387,7 +387,7 @@ class NewContactForm extends Component{
         <input type="text" name="home_city" placeholder="City"
         value={this.state.home_city}
         onChange={this.onInputChange}
-        error={this.state.home_cityError}/>
+        error={this.state.home_cityError.toString()}/>
       </div>
       <div className="field">
 
@@ -395,7 +395,7 @@ class NewContactForm extends Component{
       <select className="ui fluid dropdown" name="home_state"
       value={this.state.home_state}
       onChange={this.onInputChange}
-      error={this.state.home_stateError}>
+      error={this.state.home_stateError.toString()}>
         <option value="">State</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
@@ -455,7 +455,7 @@ class NewContactForm extends Component{
         <input type="text" name="home_zip" placeholder="zip code"
         value={this.state.home_zip}
         onChange={this.onInputChange}
-        error={this.state.home_zipError}/>
+        error={this.state.home_zipError.toString()}/>
       </div>
       </div>
       </div>
@@ -466,7 +466,7 @@ class NewContactForm extends Component{
         <input type="text" name="company_name" placeholder="(e.g. Big Company Inc.)"
         value={this.state.company_name}
         onChange={this.onInputChange}
-        error={this.state.company_nameError}/>
+        error={this.state.company_nameError.toString()}/>
       </div>
       </div>
 
@@ -476,7 +476,7 @@ class NewContactForm extends Component{
         <input type="text" name="job_title" placeholder="(e.g. Chief Executive Officer)"
         value={this.state.job_title}
         onChange={this.onInputChange}
-        error={this.state.job_titleError}/>
+        error={this.state.job_titleError.toString()}/>
       </div>
       </div>
 
@@ -486,7 +486,7 @@ class NewContactForm extends Component{
   <input type="text" name="company_address" placeholder="Street Address"
   value={this.state.company_address}
   onChange={this.onInputChange}
-  error={this.state.company_addressError}/>
+  error={this.state.company_addressError.toString()}/>
 </div>
 
 <div className="field">
@@ -495,7 +495,7 @@ class NewContactForm extends Component{
   <input type="text" name="company_city" placeholder="City"
   value={this.state.company_city}
   onChange={this.onInputChange}
-  error={this.state.company_cityError}/>
+  error={this.state.company_cityError.toString()}/>
 </div>
 </div>
 
@@ -507,7 +507,7 @@ class NewContactForm extends Component{
 <select className="ui fluid dropdown" name="company_state"
 value={this.state.company_state}
 onChange={this.onInputChange}
-error={this.state.company_stateError}>
+error={this.state.company_stateError.toString()}>
   <option value="">State</option>
 <option value="AL">Alabama</option>
 <option value="AK">Alaska</option>
@@ -566,7 +566,7 @@ error={this.state.company_stateError}>
   <input type="text" name="company_zip" placeholder="zip code"
   value={this.state.company_zip}
   onChange={this.onInputChange}
-  error={this.state.company_zipError}/>
+  error={this.state.company_zipError.toString()}/>
 </div>
 </div>
 
@@ -576,7 +576,7 @@ error={this.state.company_stateError}>
   <input type="tel" name="cell_num" placeholder="(e.g. 555-555-5555)"
   value={this.state.cell_num}
   onChange={this.onInputChange}
-  error={this.state.cell_numError}/>
+  error={this.state.cell_numError.toString()}/>
 </div>
 
 <div className="field">
@@ -584,7 +584,7 @@ error={this.state.company_stateError}>
   <input type="email" name="email_address" placeholder="(e.g. first.last@email.com)"
   value={this.state.email_address}
   onChange={this.onInputChange}
-  error={this.state.email_addressError}/>
+  error={this.state.email_addressError.toString()}/>
 </div>
 
 
@@ -600,10 +600,10 @@ error={this.state.company_stateError}>
         {selectedEventDate && <p>Day: {selectedEventDate}</p>}
         {!selectedEventDate}
         {/*try setting max date to be current date since last event should not be able to exist in the future, hard codingfor now*/}
-        <DayPickerInput type="date" max = "2019-01-31" className="last_event_date" onDayChange={this.handleDayChange}
+        <DayPickerInput type="date"  className="last_event_date" onDayChange={this.handleDayChange}
         value={this.state.last_event_date}
         onChange={this.onInputChange}
-        error={this.state.last_event_dateError}/>
+        error={this.state.last_event_dateError.toString()}/>
       </div>
       </div>
 
@@ -612,7 +612,7 @@ error={this.state.company_stateError}>
         <textarea type="text field" name="notes"
         value={this.state.notes}
         onChange={this.onInputChange}
-        error={this.state.notesError}></textarea>
+        error={this.state.notesError.toString()}></textarea>
       </div>
 
 

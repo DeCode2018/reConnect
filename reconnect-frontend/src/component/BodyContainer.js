@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import Dropdown from 'react-dropdown';
+//import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import Content from './Content';
+
 
 class BodyContainer extends Component {
   constructor() {
@@ -159,13 +160,27 @@ class BodyContainer extends Component {
       })
     }
 
+    handleClick = (event) =>{
+      this.setState({
+        currentContainerView:event.currentTarget.innerText
+      })
+
+    }
+
 
 
   render(){
-    const options = ['Select a Relationship Type','Family', 'Friends', 'Associates']
+    /*const options = ['Select a Relationship Type','Family', 'Friends', 'Associates']*/
     return(
       <Fragment>
-      <Dropdown options={options} onChange={this.relationshipView}  placeholder="Select a Relationship Type" value={this.state.currentContainerView}/>
+      <div className="ui five item menu" >
+  <button className="item" onClick={this.handleClick}>Home</button>
+  <button className="item" onClick={this.handleClick}>Family</button>
+  <button className="item" onClick={this.handleClick}>Friends</button>
+  <button className="item" onClick={this.handleClick}>Associates</button>
+  <button className="item" onClick={this.handleClick}>Add Contact</button>
+</div>
+      {/*<Dropdown options={options} onChange={this.relationshipView}  placeholder="Select a Relationship Type" value={this.state.currentContainerView}/>*/}
       <Content relationshipView={this.state.currentContainerView} userInfo={this.state.usersData}
       contactView={this.contactView}
       onDelete={this.onDelete}
@@ -176,9 +191,10 @@ class BodyContainer extends Component {
       handleEditClick={this.handleEditClick}
       onUpdateLastEventDay={this.onUpdateLastEventDay}
       optimisticRemove={this.optimisticRemove}/>
-      <button className="ui black button" onClick={this.handleAddButton}
 
-      >Add A Connection</button>
+  {/*  <button className="ui black button" onClick={this.handleAddButton}
+
+    >Add A Connection</button>*/}
       </Fragment>
 
 

@@ -26,7 +26,7 @@ class FriendCard extends Component{
           if (month < 10) {
             month = '0' + month;
           }
-       let configPastDue = year+'-'+month+'-'+dt
+       let configPastDue = month+'-'+dt+'-'+year
 
     return configPastDue
   }
@@ -49,13 +49,13 @@ class FriendCard extends Component{
       {(this.props.friendMember.last_event_date <= this.pastDueDate())?
       <div className="extra content ">
         <span className="ui red message right floated">
-        Date of Last Event:  {new Date(this.props.friendMember.last_event_date).toDateString()}
+        Date of Last Event:  {new Date(this.props.friendMember.last_event_date.replace(/-/g, '/')).toDateString()}
         </span>
       </div>:
       <div className="extra content ">
-        <span className="ui right floated">
-        Date of Last Event:  {new Date(this.props.friendMember.last_event_date).toDateString()}
-        </span>
+      <span className="ui center floated">
+      Date of Last Event:  {new Date(this.props.friendMember.last_event_date.replace(/-/g, '/')).toDateString()==="Invalid Date"?<h4><strong>No Events...set one up today!</strong></h4>: new Date(this.props.friendMember.last_event_date.replace(/-/g, '/')).toDateString()}
+      </span>
       </div>
     }
 

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "daypilot-pro-react": "https://npm.daypilot.org/daypilot-pro-react/trial/2018.2.3297.tar.gz",
     "moment": "^2.23.0",
     "rc-datetime-picker": "^1.6.1",
     "react": "^16.6.3",
@@ -13,7 +14,7 @@
     "react-dom": "^16.6.3",
     "react-dropdown": "^1.6.2",
     "react-moment": "^0.8.4",
-    "react-scripts": "2.1.1",
+    "react-scripts": "^2.1.2",
     "semantic-ui-calendar-react": "^0.12.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.84.0"
