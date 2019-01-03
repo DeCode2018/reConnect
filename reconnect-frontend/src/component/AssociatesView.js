@@ -27,7 +27,7 @@ class AssociatesView extends Component{
 
       <select className='ui fluid dropdown center' name="duration" value={`${this.state.duration}`}
       onChange={(event)=>this.setDuration(event)}>
-      <option value="">Overdue Duration</option>
+      <option value="">Overdue Event Duration</option>
       <option value={7}>1 week</option>
       <option value={14}>2 weeks</option>
       <option value={30}>1 month</option>

@@ -47,7 +47,7 @@ class Content extends Component{
         onEdit={this.props.onEdit}/>;
         // eslint-disable-next-line
         break;
-      case 'add contact':
+      case 'Add Contact':
         return <NewContactForm userInfo={this.props.userInfo}
         onAdd={this.props.onAdd}/>;
         // eslint-disable-next-line
