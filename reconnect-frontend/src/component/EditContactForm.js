@@ -389,7 +389,7 @@ class EditContactForm extends Component{
 
 
       <div className="field">
-        <label>Notes: </label>
+        <label><strong>Notes: </strong></label>
         <textarea type="text field" name="notes" value={`${this.state.notes}`} onChange={(event)=>this.updateField(event)}></textarea>
       </div>
 

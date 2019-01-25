@@ -77,7 +77,7 @@ constructor(props){
       </div>
       <div className="description">
         <h2>Last Event: {(this.props.currentCard.last_event_date)}</h2>
-        <p>Notes: {this.props.currentCard.notes}</p>
+        <p><strong><u>Notes:</u></strong> {this.props.currentCard.notes}</p>
       </div>
       <button className="ui labeled icon inverted green button" onClick={this.handleEventClick}>
         <i className="add icon"></i>
