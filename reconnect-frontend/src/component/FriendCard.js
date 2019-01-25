@@ -27,7 +27,11 @@ class FriendCard extends Component{
             month = '0' + month;
           }
        let configPastDue = month+'-'+dt+'-'+year
+       let date1 = this.props.friendMember.last_event_date.slice(0,10)
 
+       console.log(date1)
+       console.log(configPastDue)
+       console.log(date1<configPastDue)
     return configPastDue
   }
 
@@ -36,7 +40,7 @@ class FriendCard extends Component{
     return(
 
   <div className="card" onClick={()=>this.props.handleClick(this.props.friendMember)}>
-    <div className="image">
+    <div className="ui middle aligned medium circular image centered bordered">
       <img src={this.props.friendMember.contact_avatar} alt='user avatar'/>
     </div>
     <div className="content">
@@ -46,7 +50,7 @@ class FriendCard extends Component{
       </div>
 
       </div>
-      {(this.props.friendMember.last_event_date <= this.pastDueDate())?
+      {(this.props.friendMember.last_event_date.slice(0,10) <= this.pastDueDate())?
       <div className="extra content ">
         <span className="ui red message right floated">
         Date of Last Event:  {new Date(this.props.friendMember.last_event_date.replace(/-/g, '/')).toDateString()}

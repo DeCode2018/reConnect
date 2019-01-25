@@ -6,7 +6,7 @@ class FamilyView extends Component{
   constructor(){
     super()
     this.state ={
-      duration: 365
+      duration: 0
     }
   }
 
@@ -30,10 +30,11 @@ class FamilyView extends Component{
       onChange={this.setDuration}
       placeholder='Select period of time to keep in contact with this relationship group'
       value={this.state.duration} />*/}
-
-      <select className='ui fluid dropdown center item' name="duration" value={`${this.state.duration}`}
+    
+      <div>
+      <select className='ui dropdown center item' name="duration" value={`${this.state.duration}`}
       onChange={(event)=>this.setDuration(event)}>
-      <option value="">Overdue Event Duration</option>
+      <option value={10000}>Choose Overdue Event Duration</option>
       <option value={7}>1 week</option>
       <option value={14}>2 weeks</option>
       <option value={30}>1 month</option>
@@ -41,6 +42,7 @@ class FamilyView extends Component{
       <option value={180}>6 months</option>
       <option value={365}>1 year</option>
       </select>
+      </div>
 
       <div className="ui link cards">
         {filteredFamily.map(familyMember => <FamilyCard familyMember={familyMember} key={familyMember.id} handleClick={this.props.handleClick}

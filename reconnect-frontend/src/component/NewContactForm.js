@@ -80,6 +80,7 @@ class NewContactForm extends Component{
           bmonth = '0' + bmonth;
         }
         let configbday = bmonth+'-'+bdt+'-'+byear
+        console.log(configbday)
        this.setState({ selectedBirthDate: configbday });
 
    }
@@ -97,6 +98,7 @@ class NewContactForm extends Component{
            emonth = '0' + emonth;
          }
       let configday = emonth+'-'+edt+'-'+eyear
+      console.log(configday)
      this.setState({ selectedEventDate: configday });
    }
 
@@ -608,7 +610,7 @@ error={this.state.company_stateError.toString()}>
       </div>
 
       <div className="field">
-        <label>Notes: </label>
+        <label><strong>Notes: </strong></label>
         <textarea type="text field" name="notes"
         value={this.state.notes}
         onChange={this.onInputChange}
